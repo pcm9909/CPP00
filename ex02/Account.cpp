@@ -53,10 +53,10 @@ int	Account::getNbWithdrawals( void )
 void	Account::displayAccountsInfos( void )
 {
 	_displayTimestamp();
-	std::cout << " accounts:" << _nbAccounts << ";"
-			<< "total:" << _totalAmount << ";"
-			<< "deposits:" << _totalNbDeposits << ";"
-			<< "withdrawals:" << _totalNbWithdrawals << std::endl;
+	std::cout << " accounts:" << getNbAccounts() << ";"
+			<< "total:" << getTotalAmount() << ";"
+			<< "deposits:" << getNbDeposits() << ";"
+			<< "withdrawals:" << getNbWithdrawals() << std::endl;
 
 }
 
@@ -67,6 +67,7 @@ void	Account::makeDeposit( int deposit )
 				<< "p_amount:" << _amount << ";"
 				<< "deposit:" << deposit << ";" ;
 				_amount += deposit;
+				_totalAmount += deposit;
 				++_nbDeposits;
 				++_totalNbDeposits;
 	std::cout << "amount:" << _amount << ";"
@@ -82,11 +83,12 @@ bool	Account::makeWithdrawal( int withdrawal )
 	if(_amount >= withdrawal)
 	{
 		_amount -= withdrawal;
+		_totalAmount -= withdrawal;
 		++_nbWithdrawals;
 		++_totalNbWithdrawals;
 		std::cout << withdrawal << ";"
 					<< "amount:" << _amount << ';'
-					<<	"nb_withdrawal:" << _totalNbWithdrawals << std::endl;
+					<<	"nb_withdrawals:" << getNbWithdrawals() << std::endl;
 	}
 	else
 		std::cout << "refused" << std::endl;
