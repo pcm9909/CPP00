@@ -1,17 +1,17 @@
-NAME = ex00
+NAME = megaphone
 CC = c++
-FLAG = -std=c++98
-SRCS = megaphone.cpp
+FLAG = -Werror -Wextra -Wall -std=c++98
+SRCS = Contact.cpp PhoneBook.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
+
+%.o: %.cpp
+	$(CC) $(FLAG) -c $< -o $@
 
 all : $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAG) -o $(NAME) $(OBJS)
-
-%.o: %.cpp
-	$(CC) $(FLAG) -c $< -o $@
 
 clean :
 	@rm -rf $(OBJS)
